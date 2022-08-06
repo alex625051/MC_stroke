@@ -101,7 +101,7 @@ def prepareOutData_1step(root=False, canvas=False, st=False, X=False, Y=False, b
     fetaH = 0
     fetaF = 0
     minor = st * 0.95
-    If visibable:
+    if visibable:
         canvas.delete("all")
         build_board(canvas, st, X, Y)
     # I is red, H is blue, D is black, F is green
@@ -399,10 +399,10 @@ def change_board(board, t, changed_points):
     # if there are no available grid states to change, then the algorithm terminates
     if R == 0:
         return False
-    dt = decimal.Decimal(str(math.log(1 / E)) / R
+    dt = decimal.Decimal(str(math.log(1 / E)) / R)
     t = t + dt
     try:
-        board[ev['y']][ev['x']] = ev['yx']]
+        board[ev['y']][ev['x']] = ev['yx']
     except:
         return False
 
@@ -435,7 +435,7 @@ def change_board(board, t, changed_points):
         return points
 
     if ev.get('y2x2'):
-        board[ev['y2']][ev['x2']] = ev['y2x2']]
+        board[ev['y2']][ev['x2']] = ev['y2x2']
 
     changed_points = get_changed_points(ev)
     return board, t, changed_points
@@ -498,7 +498,7 @@ def showGraph(FetaD_array, filename_suffix=""):
 # Change the format of t for the visualization
 def tToint(t):
     delta = datetime.timedelta(minutes=float(t))
-    ret = f "t={int(t)}min ({delta})"
+    ret = f"t={int(t)}min ({delta})"
     return ret
 
 
@@ -542,7 +542,7 @@ def main():
     out_data_array.append(out_data_1step)
     root.title(f'Monte Carlo method. t={tToint(t)}, step={step}')
     root.bind('<Button-1>', lambda e: pauseUI(root))
-    If saveGif:
+    if saveGif:
         addCanvasToArr(canvas=canvas)
 
     while unlimetedSteps or t <= 300: # Algorithm runs until time T, display every 10, create animation Gif
