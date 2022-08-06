@@ -20,20 +20,20 @@ continuedVer = '1.18_3'  # Number of the set of initial conditions and settings
 # Technical model introductions
 nol0 = decimal.Decimal('0')  # Zero of type Decimal
 continued = False  # Renewable mode for distributed computing
-saveGif = True;
-showVisualDelay = 100;  # Skipping steps for the next visualization step
+saveGif = False;
+showVisualDelay = 1;  # Skipping steps for the next visualization step
 unlimetedSteps = True; # Compute until all available model state transition probabilities are exhausted
 unlimetedLimits = False; # infinite lattice allowed
 averBoardHLimit = True; # surround the workspace with border cells with "H"
 startIcellsFromCenter = True; # Fill the initial state of the grid around the geometric center
 t0 = decimal.Decimal('5') # Initial time
 xlimits = [0, 60 * 24 * 3] # Limits of X-axis
-T = 300; # Limit number of steps (when unlimetedSteps = False)
+T = 1000; # Limit number of steps (when unlimetedSteps = False)
 
 
 # Input data
-X = 30;
-Y = 30;
+X = 20;
+Y = 20;
 N_I = X * Y * 0.10 # Initial number of I-cells to fill (total number of cells multiplied by I fraction)
 N_D = X * Y * 0.000
 N_F = X * Y * 0.0
@@ -399,8 +399,9 @@ def change_board(board, t, changed_points):
     # if there are no available grid states to change, then the algorithm terminates
     if R == 0:
         return False
-    dt = decimal.Decimal(str(math.log(1 / E)) / R)
+    dt = decimal.Decimal(str(math.log(1 / E))) / R
     t = t + dt
+
     try:
         board[ev['y']][ev['x']] = ev['yx']
     except:
@@ -547,6 +548,8 @@ def main():
 
     while unlimetedSteps or t <= 300: # Algorithm runs until time T, display every 10, create animation Gif
         step = step + 1
+        board, t, changed_points = change_board(board=board, t=t, changed_points=changed_points)
+
         try:
             board, t, changed_points = change_board(board=board, t=t, changed_points=changed_points)
         except:
