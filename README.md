@@ -22,3 +22,6 @@ Getting Started
 7) Activate it: source venv/bin/activate
 8) Install python's packegaes: pip install -r requiements.txt
 9) Run modeling process: python mc_stroke.py
+
+    ![image](https://github.com/alex625051/MC_stroke/assets/32332025/e0129b98-a5af-45da-a4ea-a677564a658b)
+
